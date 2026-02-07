@@ -1,9 +1,9 @@
 import popcorn2 from "../assets/popcorn2.jpg"
 import { Link } from "react-router";
 export default function Poster() {
-
+//#0A0A0C
   return (
-    <div className="bg-[#0A0A0C]">
+    <div className="bg-black">
       <div className="w-full h-[650px] flex items-center  container mx-auto  flex-wrap">
         <div className="flex-1 pl-[100px]">
           <div className="text-[#EDEDED] font-bold text-5xl max-w-[500px] animate-slide-up delay-1">
