@@ -11,28 +11,31 @@ export default function MovieNav(){
                 async function search(){
                     const response=await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`)
                     const data=await response.json()
-                    setDataId(data.genres)
-                    
+                    // console.log(data)
+                    setDataId(data?.genres) //all catagories 
+                     const found=data?.genres?.find((item)=>item?.name.toLowerCase()===value.toLowerCase())
+                    if(found){
+                        setId(found?.id)    //which category
+                    }
                     
                 }
-                search()
-                 const found=dataid.find((item)=>item.name.toLowerCase()===value.toLowerCase())
-                    if(found){
-                        setId(found.id)
-                    }
+                
+                
+                    search()
             },[value])
-            
-    console.log(dataid)
-    
+           
+            // console.log(dataid) 
+            //  console.log(id)
     return(
         
         <div className="w-full  flex justify-center ">
-            <div className="w-[55%] flex justify-between mt-[40px]   border-0 ">
-             <div className="w-[70%]">
-                <input className="w-full  px-[20px] py-[8px]  rounded-[5px] focus:outline-none  bg-[#EEEEEE]" type="text" placeholder="search movies"/>
+            <div className="w-[55%]   md:justify-between  mt-[40px]   border-0 flex flex-col md:flex-row gap-3 ">
+
+             <div className="md:w-[70%] ">
+                <input className="w-full  px-[20px] py-[8px]  rounded-[5px] focus:outline-none  bg-[#dddddd]" type="text" placeholder="search movies"/>
             </div>
-                   <div className="group relative inline-block mx-[10px]">
-                     <div className="cursor-pointer w-[150px] text-center bg-[#EEEEEE]  px-[20px] py-[8px] rounded-[5px]" value="">{value}</div>
+                   <div className="group relative inline-block mx-[10px] ">
+                     <div className="cursor-pointer md:w-[150px] text-center bg-[#dddddd] text-md  px-[20px] py-[8px] rounded-[5px]" value="">{value}</div>
                     <ul  className="absolute left-0    hidden  opacity-0 group-hover:block  group-hover:opacity-100 bg-amber-600 w-[150px] text-center transition duration-500 group-hover:top-[40px]">
                     
                     <li className=" hover:bg-amber-700 cursor-pointer duration-300 ease-in " onClick={()=>setValue("All")} >All</li>

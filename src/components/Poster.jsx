@@ -3,7 +3,7 @@ import { Link } from "react-router";
 export default function Poster() {
 //#0A0A0C
   return (
-    <div className="bg-black flex justify-center">
+    <div className="bg-black flex justify-center h-[750px]">
       <div className="w-full  flex items-center  container mx-auto  flex-wrap">
         <div className="flex-1 pl-[100px]">
           <div className="text-[#EDEDED] font-bold text-5xl max-w-[500px] animate-slide-up delay-1">
@@ -18,7 +18,7 @@ export default function Poster() {
           <div className="text-[#F5C518] font-bold text-6xl mt-[25px] animate-slide-up delay-3">
             Hey! Why wait any longer?
           </div>
-          <Link to="/movies">
+          <Link to="/movieexplore">
             <button className="text-white mt-8 font-medium text-2xl  bg-red-800 rounded-2xl px-5 py-1 cursor-pointer" >Explore Movies</button>
           </Link>
         </div>
