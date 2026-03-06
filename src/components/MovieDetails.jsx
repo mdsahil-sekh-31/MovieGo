@@ -2,11 +2,14 @@ import { useContext, useEffect, useState} from "react"
 import { GlobalContext } from "./GlobalContext"
 import { useParams } from "react-router"
 import { Link } from "react-router"
+import { useDispatch } from "react-redux"
 import Showtime_selection from "./Showtime_selection"
+import { setMovieInfo } from "./slice/movieinfo"
 const apiKey = import.meta.env.VITE_TMBD_API_KEY
 
 export default function MovieDetails(){
-        const [movie, setMovie] = useState(null)
+    const dispatch = useDispatch();
+    const [movie, setMovie] = useState(null)
     const { id } = useParams()
     const base_url="https://image.tmdb.org/t/p/w500"
     useEffect(() => {
@@ -18,12 +21,14 @@ export default function MovieDetails(){
         )
         const data = await response.json()
         console.log(data)
+       dispatch(setMovieInfo({id, name: data?.title}));
         setMovie(data)
+        
     }
 
     fetchMovie()
     }, [id])
-
+    
     if(!movie) return <p>Loading...</p>
      return(
         
@@ -40,7 +45,7 @@ export default function MovieDetails(){
                     <img className="w-[200px] md:w-[400px]" src={base_url+movie?.poster_path} alt="" />
                 </div>
                 <div className="mx-[10px] ">
-                    <div>{movie.original_title}</div>
+                    <div>{movie.title}</div>
                    <div className="flex gap-1">
                      <div className="flex gap-1 ">
                         {
@@ -57,7 +62,7 @@ export default function MovieDetails(){
                 </div>
             </div>
 
-            <Showtime_selection/>   
+            <Showtime_selection />   
             
         </div>
         </div>

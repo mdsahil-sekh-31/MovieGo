@@ -1,6 +1,8 @@
 import { useState } from "react"
 import Timebar from "./Timebar"
+
 export default function Showtime_selection(){
+   
     const[data,setData]=useState()
     const arr=[{
         time:"11.00 AM",
@@ -21,7 +23,6 @@ export default function Showtime_selection(){
         price: "30"
     },
 ]
-    console.log(data)
     return(
         <div>
             <p>Select Showtime</p>

@@ -3,14 +3,21 @@ import timer from "../assets/timer.png"
 import pricing from "../assets/pricing.png"
 import persons from "../assets/persons.png"
 import screen from "../assets/screen.png"
-
+import { Link } from "react-router"
+import { useParams } from "react-router"
+import { useDispatch } from "react-redux"
+import {setTime, setPrice} from "./slice/movieinfo"
 export default function Timebar({data,time,Screen,price}){
+        const dispatch = useDispatch();
+        
+        
+    const { id } = useParams()
+    
     return(
         <div className="px-3 sm:px-5 py-2 border my-3 border-gray-300 rounded-lg shadow-sm">
 
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 w-full">
 
-                {/* All Info Section */}
                 <div className="flex flex-wrap gap-4 sm:gap-6">
 
                     {/* Date */}
@@ -61,9 +68,12 @@ export default function Timebar({data,time,Screen,price}){
                 </div>
 
                 {/* Button */}
-                <div className="bg-black px-3 py-1 sm:px-4 sm:py-2 rounded-md cursor-pointer text-center w-fit">
+                <div className="bg-black px-3 py-1 sm:px-4 sm:py-2 rounded-md cursor-pointer text-center w-fit" onClick={() => {dispatch(setTime(time)); dispatch(setPrice(price));}}>
                     <p className="text-white text-[10px] sm:text-[11px] md:text-sm font-medium">
-                        Select Seats
+                         <Link to={`/movieexplore/moviedetails/${id}/seat-payment`} >
+                          Select Seats
+                          </Link>
+                       
                     </p>
                 </div>
 
